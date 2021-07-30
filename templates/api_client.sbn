@@ -1,4 +1,7 @@
 import axios from 'axios';
+
+axios.defaults.baseURL = '{{base_url}}';
+
 const dateFormat = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/;
 
 function reviver(key, value) {
@@ -36,10 +39,6 @@ const api = {
   },
   register: async function (data) {
     const response = await axios.post('registration/register', data);
-    return response.data;
-  },
-  activate: async function (activationToken) {
-    const response = await axios.post(`registration/activate?activationToken=${activationToken}`);
     return response.data;
   },
   profile: async function (jwt) {
