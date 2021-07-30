@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import authModule, { AuthState } from '@/store/AuthModule';
+import authModule from '@/store/AuthModule';
 {{~ for class in classes ~}}
 import {{camel_case class.name}}Module from '@/store/{{class.name}}Module';
 {{~ end ~}}
