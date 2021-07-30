@@ -1,4 +1,3 @@
-import { ActionContext } from 'vuex';
 import { findById, patchArray, setArray, setItem } from './util';
 import api from '../api';
 
@@ -40,7 +39,7 @@ export default {
       return findById(context.state.{{ camel_case resource.name.plural }}, {{ camel_case resource.name }}.id);
     },
     delete{{ resource.name }}: async function(context, {{ camel_case resource.name}}) {
-      context.commit('set{{ resource.name.plural }}', context.state.{{ camel_case resource.name.plural }}.filter((i: {{ resource.class.name}}) => i !== {{ camel_case resource.name}}));
+      context.commit('set{{ resource.name.plural }}', context.state.{{ camel_case resource.name.plural }}.filter(i => i !== {{ camel_case resource.name}}));
       await api.delete{{ resource.name }}({{ camel_case resource.name}}, context.rootState.auth.jwt);
     },
     {{~ end ~}}
@@ -53,8 +52,8 @@ export default {
       return context.state.{{ camel_case resource.name.plural }};
     },
     add{{ resource.name }}To{{ parent.name }}: async function(context, data) {
-      let {{camel_case resource.name}}: {{resource.class.name}} = data.{{camel_case resource.name}};
-      const {{camel_case parent.name}}: {{parent.class.name}} = data.{{camel_case parent.name}};
+      let {{camel_case resource.name}} = data.{{camel_case resource.name}};
+      const {{camel_case parent.name}} = data.{{camel_case parent.name}};
       {{ camel_case resource.name }} = await api.add{{ resource.name }}To{{ parent.name }}({{ camel_case resource.name}}, {{camel_case parent.name}}, context.rootState.auth.jwt);
       context.commit('set{{ resource.name }}', {{ camel_case resource.name }});
       return findById(context.state.{{ camel_case resource.name.plural }}, {{ camel_case resource.name }}.id);
