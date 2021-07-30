@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent, ref } from 'vue';
 import { useForm, useField } from 'vee-validate';
 import { useStore } from 'vuex';
