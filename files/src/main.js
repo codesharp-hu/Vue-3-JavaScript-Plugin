@@ -1,4 +1,13 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import router from './router'
+import store from './store'
+const app = createApp(App).use(store).use(router)
 
-createApp(App).mount('#app')
+app.config.globalProperties.$filters = {
+    dateFormat(date) {
+        return `${date.toLocaleDateString('en-US')}, ${date.toLocaleTimeString('en-US')}`;
+    }
+}
+
+store.dispatch('init').then(() => app.mount('#app'))

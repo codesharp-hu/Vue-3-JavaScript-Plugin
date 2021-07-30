@@ -1,18 +1,10 @@
 import { createStore } from 'vuex'
 import authModule, { AuthState } from '@/store/AuthModule';
 {{~ for class in classes ~}}
-import {{camel_case class.name}}Module, { {{class.name.plural}}State } from '@/store/{{class.name}}Module';
+import {{camel_case class.name}}Module from '@/store/{{class.name}}Module';
 {{~ end ~}}
 
-
-export interface State {
-  auth: AuthState;
-  {{~ for class in classes ~}}
-  {{camel_case class.name.plural}}: {{class.name.plural}}State;
-  {{~ end ~}}
-}
-
-export default createStore<State>({
+export default createStore({
   modules: {
     auth: authModule,
     {{~ for class in classes ~}}
