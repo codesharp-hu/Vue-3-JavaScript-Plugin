@@ -21,6 +21,10 @@ export default {
     },
     setUser: function(state, user) {
       state.user = user
+    },
+    logout: function(state) {
+      state.user = null;
+      localStorage.removeItem('jwt');
     }
   },
   actions: {
