@@ -69,6 +69,7 @@ export default defineComponent({
     const onSubmit = handleSubmit(async () => {
       try {
         await api.updateProfile({
+          id: store.state.auth.user.id,
           userName: userName.value,
           email: email.value
         }, store.state.auth.jwt);
